@@ -1,25 +1,29 @@
 import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import Cabecera from './components/Cabecera';
+import Cuerpo from './components/Cuerpo';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {title: "Esto es el titulo pasado con props"}
+    this.changeName = this.changeName.bind(this);
+
+  }; 
+  render(){
+    return (
+      <div className="App">
+          <Cabecera title={this.state.title}/>
+          <Cuerpo changeNameX={this.changeName}/>
+      </div>
+    );
+  }
+  changeName(){
+    console.log(this)
+    this.setState({ title: "Nuevo titulo papi"})
+  }
 }
 
 export default App;
